@@ -2,10 +2,8 @@
 
 Totem Tweaker is a lightweight client-side Minecraft mod for Fabric that allows players to customize the appearance of the Totem of Undying.
 
-# **IMPORTANT**
-THIS IS NOT [TOTEM TWEAK**S**](https://modrinth.com/mod/cpvp) BY [PATHDOS](https://modrinth.com/user/Pathdos) !
-
-Check it out tho :) it support other versions and if you only want smaller totems for an usupported version i'd recommend using it but the 2 are probably not compatible !
+# IMPORTANT
+Not to be confused with Totem [Totem Tweaks](https://modrinth.com/mod/cpvp) by [Pathdos](https://modrinth.com/user/Pathdos). If you're looking for support for additional Minecraft versions or only want smaller totems, it's a great alternative. The two mods are probably not compatible.
 
 ## Features
 
