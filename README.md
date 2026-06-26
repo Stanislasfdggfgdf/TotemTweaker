@@ -1,61 +1,48 @@
-# Totem Tweaker
+# TotemTweak — Fabric 1.21.1
 
-Totem Tweaker is a lightweight client-side Minecraft mod for Fabric that allows players to customize the appearance of the Totem of Undying.
+Customise the Totem of Undying experience:
 
-# IMPORTANT
-Not to be confused with Totem [Totem Tweaks](https://modrinth.com/mod/cpvp) by [Pathdos](https://modrinth.com/user/Pathdos). If you're looking for support for additional Minecraft versions or only want smaller totems, it's a great alternative. The two mods are probably not compatible.
+| Feature | Config key | Default | Range |
+|---|---|---|---|
+| Overlay animation scale | `animationScale` | `1.0` | `0.0` – `1.0` |
+| Overlay animation transparency | `animationAlpha` | `1.0` | `0.0` (invisible) – `1.0` (opaque) |
+| Remove totem particles | `removeParticles` | `false` | `true` / `false` |
+| Totem size in hand | `handScalePercent` | `100.0` | `1` – `100` |
 
-## Features
+## Config file
 
-* Configurable Totem of Undying animation size.
-* Configurable animation transparency.
-* Option to enable or disable totem particles.
-* Configurable held totem size.
-* Lightweight and fully client-side.
+`<minecraft>/config/totemtweak.json`
 
-## Requirements
-
-* Minecraft (see supported versions on Modrinth)
-* Fabric Loader
-* Fabric API
-
-## Building
-
-Clone the repository:
-
-```bash
-git clone https://github.com/Stanislasfdggfgdf/TotemTweaker.git
-cd Totem-Tweak
+```json
+{
+  "animationScale": 0.5,
+  "animationAlpha": 0.4,
+  "removeParticles": true,
+  "handScalePercent": 60.0
+}
 ```
 
-Build the project with Gradle:
+Edit the file and use `/totemtweak reload` in-game (no restart needed).
+
+## In-game commands
+
+| Command | Description |
+|---|---|
+| `/totemtweak reload` | Reload config from disk |
+| `/totemtweak info` | Print current config values |
+
+## Build
 
 ```bash
 ./gradlew build
+# Jar at: build/libs/totemtweak-1.0.0+1.21.1.jar
 ```
 
-On Windows:
+## How it works
 
-```bat
-gradlew.bat build
-```
-
-The compiled mod will be available in:
-
-```text
-build/libs/
-```
-
-## Development
-
-This project uses:
-
-* Java
-* Fabric Loom
-* Fabric API
-
-Feel free to fork the project, submit pull requests, or report issues.
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+| Mixin | Target | Purpose |
+|---|---|---|
+| `TotemOverlayRendererMixin` | `InGameHud#renderTotemPopUpAnimation` | Cancels vanilla overlay → redraws with custom scale & alpha |
+| `TotemTimeAccessor` | `InGameHud.totemTime` | Reads private field without reflection |
+| `GameRendererMixin` | `ParticleManager#addTotemParticles` | Cancels particle burst when `removeParticles=true` |
+| `LivingEntityRendererMixin` | `HeldItemRenderer#renderFirstPersonItem` | Wraps rendering in a scale matrix for the totem item |
