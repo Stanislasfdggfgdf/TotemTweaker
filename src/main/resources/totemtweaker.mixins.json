@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.totemtweaker.totemtweaker.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "TotemOverlayRendererMixin",
+    "GameRendererMixin",
+    "LivingEntityRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
